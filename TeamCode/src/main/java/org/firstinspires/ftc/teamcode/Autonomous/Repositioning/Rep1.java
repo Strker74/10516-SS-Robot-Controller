@@ -116,9 +116,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             arm.setDirection(Servo.Direction.REVERSE);
             // Command Line
             waitForStart();
-            strafe(1,500);
-            strafe(0,500);
-            strafe(-1,250);
+            strafe(-1,650);
+            drive(-1,500);
+            strafe(1,550);
+
         }
     }
 
