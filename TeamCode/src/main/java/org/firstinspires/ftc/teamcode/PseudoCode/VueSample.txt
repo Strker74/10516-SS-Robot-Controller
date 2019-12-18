@@ -1,0 +1,13 @@
+package org.firstinspires.ftc.teamcode.Autonomous.Delivery;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
+@Autonomous(name = "EN Pseudo Code [Don't Run]", group = "Pseudo Code")
+@Disabled
+public class VuePseudo {
+    private void search(String target) {
+        for i in Vuforia.Trackables
+
+    }
+}
