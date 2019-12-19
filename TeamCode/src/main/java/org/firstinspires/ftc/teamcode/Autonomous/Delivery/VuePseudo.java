@@ -18,28 +18,30 @@ public class VuePseudo extends LinearOpMode {
     private void Next() {}
     private void Orient() {}
     private boolean Search(String target) {
-        int n = VuforiaTrackables.get(target);
-        if (VuforiaTrackables.IsVisible(n)) {
+        // int n = VuforiaTrackables.get(target);
+
+        if (/*VuforiaTrackables.IsVisible(n)*/ true) {
             return true;
         } else {
             return false;
         }
     }
+
     @Override
     public void runOpMode() {
         Initialize(); // Setting Up the Hardware-Software Links
         Orient(); // Drive commands to set the robot facing stones
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) { // Checking for one of the three stone orientations
             if(Search("SkyStone")) {
+                Grab(); // Lift/Intake commands to pick up stones
+                Deliver(); // Drive commands for transport/delivery
+                Return(i + 3); // Drive commands to return to the i + 3 stone in quarry
                 Grab();
                 Deliver();
-                Return(i + 3);
-                Grab();
-                Deliver();
-                Park();
+                Park(); // Drive commands to navigate using vuforia targets
                 break;
             } else {
-                Next();
+                Next(); // Drive commands to move the robot to the next stone to track
             }
         }
     }
