@@ -24,10 +24,10 @@ public class Test_Chassis_1 extends OpMode {
     @Override
     public void loop() {
         // Wheels
-        final double v1 = ((-gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
-        final double v2 = ((-gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
-        final double v3 = ((-gamepad1.left_stick_y + gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
-        final double v4 = ((-gamepad1.left_stick_y + gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
+        final double v1 = ((gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
+        final double v2 = ((gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
+        final double v3 = ((gamepad1.left_stick_y + gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
+        final double v4 = ((gamepad1.left_stick_y + gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
 
         fl.setPower(v1);
         bl.setPower(v2);
