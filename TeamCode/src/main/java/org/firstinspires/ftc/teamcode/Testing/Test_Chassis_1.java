@@ -11,6 +11,7 @@ import java.lang.Math;
 public class Test_Chassis_1 extends OpMode {
     private DcMotor fl, fr, bl, br;
     private Servo jacket;
+    private double jPos;
     @Override
     public void init() {
         fl = hardwareMap.get(DcMotor.class, "Front Left");
@@ -26,10 +27,12 @@ public class Test_Chassis_1 extends OpMode {
     }
     @Override
     public void init_loop() {
-
+        jacket.setPosition(0.5);
+        jPos = jacket.getPosition();
     }
     @Override
     public void loop() {
+        telemetry.addData("Jacket Position", jacket.getPosition());
         // Wheels
         final double v1 = ((gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
         final double v2 = ((gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
@@ -39,6 +42,7 @@ public class Test_Chassis_1 extends OpMode {
         fl.setPower(v1);
         bl.setPower(v2);
         br.setPower(v3);
+        fr.setPower(v4);
         fr.setPower(v4);
 
         /*
@@ -52,10 +56,12 @@ public class Test_Chassis_1 extends OpMode {
         */
 
         if (gamepad1.a) {
-            jacket.setPosition(jacket.getPosition() + 0.1);
+            jPos += 0.05;
+            jacket.setPosition(jPos);
         }
         if (gamepad1.b) {
-            jacket.setPosition(jacket.getPosition() - 0.1);
+            jPos -= 0.05;
+            jacket.setPosition(jPos);
         }
     }
 }
