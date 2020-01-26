@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Testing;
+package org.firstinspires.ftc.teamcode.Testing.TeleOperator;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -10,7 +10,8 @@ import java.lang.Math;
 @TeleOp(name = "Test_Chassis_10516",group = "TeleOp")
 public class Test_Chassis_1 extends OpMode {
     private DcMotor fl, fr, bl, br;
-    private Servo jacket;
+    private Servo leftJacket;
+    private Servo rightJacket;
     private double jPos;
     @Override
     public void init() {
@@ -22,22 +23,37 @@ public class Test_Chassis_1 extends OpMode {
         fr.setDirection(DcMotor.Direction.REVERSE);
         br.setDirection(DcMotor.Direction.REVERSE);
 
-        jacket = hardwareMap.get(Servo.class, "Jacket");
+        leftJacket = hardwareMap.get(Servo.class, "Left Jacket");
+        rightJacket = hardwareMap.get(Servo.class, "Right Jacket");
+
+        rightJacket.setDirection(Servo.Direction.REVERSE);
 
     }
     @Override
     public void init_loop() {
-        jacket.setPosition(0.5);
-        jPos = jacket.getPosition();
+        jPos = leftJacket.getPosition();
     }
     @Override
     public void loop() {
-        telemetry.addData("Jacket Position", jacket.getPosition());
+        telemetry.addData("Left Jacket Position", leftJacket.getPosition());
+        telemetry.addData("Right Jacket Position", rightJacket.getPosition());
+        telemetry.addData("JPOS", jPos);
+
+        if (gamepad1.a) {
+            leftJacket.setPosition(0.25);
+            rightJacket.setPosition(0.50);
+        }
+        if (gamepad1.b) {
+            jPos -= 0.05;
+            leftJacket.setPosition(1);
+            rightJacket.setPosition(1);
+        }
+
         // Wheels
-        final double v1 = ((gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
-        final double v2 = ((gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
-        final double v3 = ((gamepad1.left_stick_y + gamepad1.right_stick_x - gamepad1.left_stick_x)/2.5);
-        final double v4 = ((gamepad1.left_stick_y + gamepad1.right_stick_x + gamepad1.left_stick_x)/2.5);
+        final double v1 = ((gamepad1.left_stick_y - gamepad1.right_stick_x - gamepad1.left_stick_x)/3);
+        final double v2 = ((gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x)/3);
+        final double v3 = ((gamepad1.left_stick_y + gamepad1.right_stick_x - gamepad1.left_stick_x)/3);
+        final double v4 = ((gamepad1.left_stick_y + gamepad1.right_stick_x + gamepad1.left_stick_x)/3);
 
         fl.setPower(v1);
         bl.setPower(v2);
@@ -54,14 +70,5 @@ public class Test_Chassis_1 extends OpMode {
         final double v3 = r * Math.sin(robotangle) + rightX;
         final double v2 = r * Math.cos(robotangle) - rightX;
         */
-
-        if (gamepad1.a) {
-            jPos += 0.05;
-            jacket.setPosition(jPos);
-        }
-        if (gamepad1.b) {
-            jPos -= 0.05;
-            jacket.setPosition(jPos);
-        }
     }
 }
