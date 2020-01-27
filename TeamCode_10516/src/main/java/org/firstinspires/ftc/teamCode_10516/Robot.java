@@ -65,14 +65,14 @@ public class Robot {
      * @param z Left/Right (Strafe) Force (GamePad Left Stick x)
      */
     public void mecanumDrive(double y, double x, double z) {
-        final double v1 = -((y - x - z)/2);
-        final double v2 = -((y - x + z)/2);
-        final double v3 = -((y + x - z)/2);
-        final double v4 = -(y + x + z);
+        final double v1 = ((y - x - z)/2);
+        final double v2 = ((y - x + z)/2);
+        final double v3 = ((y + x - z)/2);
+        final double v4 = (y + x + z);
 
-        frontLeft.setPower(v1);
-        backLeft.setPower(v2);
-        backRight.setPower(v3);
-        frontRight.setPower(v4);
+        frontLeft.setPower(-v1);
+        backLeft.setPower(-v2);
+        backRight.setPower(-v3);
+        frontRight.setPower(-v4);
     }
 }
