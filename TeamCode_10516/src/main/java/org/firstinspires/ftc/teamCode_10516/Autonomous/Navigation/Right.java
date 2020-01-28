@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamCode_10516.Autonomous.Navigation;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
 
-@Autonomous(name = "Navigate Up Left", group = "Navigation")
-public class UpLeft extends LinearOpMode {
-    // Creating the Robot
+@Autonomous(name = "Navigate Right", group = "Navigation")
+public class Right extends LinearOpMode {
+    // Creating the Robot Object
     Robot robot = new Robot();
 
     @Override
@@ -16,10 +17,8 @@ public class UpLeft extends LinearOpMode {
         robot.init(hardwareMap);
         // Waiting for Start Button
         waitForStart();
-        // Drive Forward To SkyBridge
-        robot.drive(1, 500);
-        // Strafe Left Under SkyBridge
+        // Strafe Right Under SkyBridge
         robot.strafe(-1,500);
-
     }
+
 }
