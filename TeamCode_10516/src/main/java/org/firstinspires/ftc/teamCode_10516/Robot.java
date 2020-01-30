@@ -75,4 +75,25 @@ public class Robot {
         backRight.setPower(-v3);
         frontRight.setPower(-v4);
     }
+    /**
+     * Mecanum Drivetrain TeleOp Code
+     * @param y Forward/Backward Force (GamePad Left Stick y)
+     * @param x Rotational Force (GamePad Right Stick x)
+     * @param z Left/Right (Strafe) Force (GamePad Left Stick x)
+     */
+    public void trigMecDrive(double y, double x, double z) {
+        double r = Math.hypot(z, y);
+        double robotangle = Math.atan2(y, z) - Math.PI/4;
+        double rightX = x*-1;
+
+        final double v1 = r * Math.cos(robotangle) + rightX;
+        final double v2 = r * Math.sin(robotangle) - rightX;
+        final double v3 = r * Math.sin(robotangle) + rightX;
+        final double v4 = r * Math.cos(robotangle) - rightX;
+
+        frontLeft.setPower(v1);
+        backLeft.setPower(v2);
+        backRight.setPower(v3);
+        frontRight.setPower(v4);
+    }
 }

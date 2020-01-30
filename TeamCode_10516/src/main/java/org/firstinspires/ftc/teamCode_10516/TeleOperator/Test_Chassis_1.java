@@ -22,6 +22,7 @@ public class Test_Chassis_1 extends OpMode {
         if (gamepad1.a) {
             robot.close();
         }
+
         if (gamepad1.b) {
             robot.open();
         }

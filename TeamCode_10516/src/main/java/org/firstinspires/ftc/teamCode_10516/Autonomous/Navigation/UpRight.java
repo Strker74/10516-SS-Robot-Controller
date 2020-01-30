@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamCode_10516.Robot;
 @Autonomous(name = "Navigate Up Right", group = "Navigation")
 public class UpRight extends LinearOpMode {
     // Creating the Robot
-    Robot robot = new Robot();
+    private Robot robot = new Robot();
 
     @Override
     public void runOpMode() {
@@ -17,7 +17,8 @@ public class UpRight extends LinearOpMode {
         // Waiting for Start Button
         waitForStart();
         // Drive Forward To SkyBridge
-        robot.drive(1, 500);
+
+        robot.drive(1, 750);
         // Strafe Right Under SkyBridge
         robot.strafe(1,500);
 

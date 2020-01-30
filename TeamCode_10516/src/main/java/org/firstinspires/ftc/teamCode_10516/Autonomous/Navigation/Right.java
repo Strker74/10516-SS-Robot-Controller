@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamCode_10516.Robot;
 @Autonomous(name = "Navigate Right", group = "Navigation")
 public class Right extends LinearOpMode {
     // Creating the Robot Object
-    Robot robot = new Robot();
+    private Robot robot = new Robot();
 
     @Override
     public void runOpMode() {
@@ -18,7 +18,7 @@ public class Right extends LinearOpMode {
         // Waiting for Start Button
         waitForStart();
         // Strafe Right Under SkyBridge
-        robot.strafe(-1,500);
+        robot.strafe(1,500);
     }
 
 }

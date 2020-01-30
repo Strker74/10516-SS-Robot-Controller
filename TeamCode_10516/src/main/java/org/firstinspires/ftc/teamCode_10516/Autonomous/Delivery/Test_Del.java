@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
 
-@Autonomous(name = "Delivery Test", group = "Delivery")
+@Autonomous(name = "Delivery Test", group = "Test")
 public class Test_Del extends LinearOpMode {
     // Creating the Robot
     Robot robot = new Robot();

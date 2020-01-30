@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamCode_10516.Robot;
 @Autonomous(name = "Navigate Left", group = "Navigation")
 public class Left extends LinearOpMode {
     // Creating the Robot Object
-    Robot robot = new Robot();
+    private Robot robot = new Robot();
 
     @Override
     public void runOpMode() {
