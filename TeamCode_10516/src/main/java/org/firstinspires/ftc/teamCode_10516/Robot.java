@@ -50,7 +50,7 @@ public class Robot {
         drive(p, -p, -p, p, t);
     }
     public void open() {
-        leftJacket.setPosition(1);
+        leftJacket.setPosition(0.75);
         rightJacket.setPosition(1);
     }
     public void close() {

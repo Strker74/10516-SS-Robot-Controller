@@ -21,7 +21,11 @@ public class Test_Del extends LinearOpMode {
         // Drive Forward Into Stone Quarry
         robot.drive(0.5, 2000);
         // Close Jacket
+        robot.drive(0, 2000);
+
         robot.close();
+
+        robot.drive(0, 2000);
         // Drive Backwards (w/ stone)
         robot.drive(-0.5, 1000);
         // Drive Left (w/ stone)

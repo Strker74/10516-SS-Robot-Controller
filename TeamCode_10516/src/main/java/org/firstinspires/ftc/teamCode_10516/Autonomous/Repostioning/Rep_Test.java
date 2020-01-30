@@ -17,16 +17,21 @@ public class Rep_Test extends LinearOpMode {
         robot.init(hardwareMap);
         // Waiting for Start Button
         waitForStart();
-        // Approaches Foundation
-        robot.drive(0.5, 1500);
-        // Closes the jacket (Gripping the Foundation)
+
         robot.open();
+
+        robot.drive(0.5, 1500);
+
         robot.drive(0, 2000);
-        // Pulls foundation backwards
-        robot.drive(-0.3, 600);
-        // Release foundation
+
         robot.close();
-        // Strafes out the side of the foundation
+
+        robot.drive(0, 2000);
+
+        robot.drive(-0.3, 600);
+
+        robot.open();
+
         robot.strafe(-0.75, 500);
     }
 
