@@ -20,7 +20,7 @@ public class Rep_Test extends LinearOpMode {
 
         robot.open();
 
-        robot.drive(0.5, 1500);
+        robot.drive(1, 750);
 
         robot.drive(0, 2000);
 
@@ -28,11 +28,15 @@ public class Rep_Test extends LinearOpMode {
 
         robot.drive(0, 2000);
 
-        robot.drive(-0.3, 600);
+        robot.drive(-0.4, 6000);
+
+        robot.drive(0, 2000);
 
         robot.open();
 
-        robot.strafe(-0.75, 500);
+        robot.drive(0, 2000);
+
+        robot.strafe(-0.75, 1000);
     }
 
 }

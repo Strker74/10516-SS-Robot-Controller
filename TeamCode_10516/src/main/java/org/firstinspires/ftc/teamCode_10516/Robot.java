@@ -1,14 +1,31 @@
 package org.firstinspires.ftc.teamCode_10516;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Func;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
+
+
 public class Robot {
     // Public Members
     public DcMotor frontLeft, frontRight, backLeft, backRight;
     public Servo leftJacket, rightJacket;
+    BNO055IMU imu;
+    Orientation angles;
+    Acceleration gravity;
+    BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+
     // Initialization
     public void init(HardwareMap hMap) {
         frontLeft = hMap.get(DcMotor.class,"Front Left");
@@ -23,6 +40,16 @@ public class Robot {
         rightJacket = hMap.get(Servo.class, "Right Jacket");
 
         rightJacket.setDirection(Servo.Direction.REVERSE);
+
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        imu = hMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
     }
     // Autonomous Methods
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
