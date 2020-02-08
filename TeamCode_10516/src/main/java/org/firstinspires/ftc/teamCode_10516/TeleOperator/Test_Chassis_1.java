@@ -29,10 +29,5 @@ public class Test_Chassis_1 extends OpMode {
 
         robot.mecanumDrive(gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
-        telemetry.addData("Front Left", robot.frontLeft.getPower());
-        telemetry.addData("Front Right", robot.frontRight.getPower());
-        telemetry.addData("Back Left", robot.backLeft.getPower());
-        telemetry.addData("Back Right", robot.backRight.getPower());
-        telemetry.update();
     }
 }

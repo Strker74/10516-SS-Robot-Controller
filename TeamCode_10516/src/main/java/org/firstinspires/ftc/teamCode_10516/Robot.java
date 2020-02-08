@@ -67,14 +67,17 @@ public class Robot {
     public void drive(double p, long t) {
         // + powers are forward
         drive(p, p, p, p, t);
+        drive(0, 0, 0, 0,250);
     }
     public void strafe(double p, long t) {
         // + powers are right
         drive(p, -p, -p, p, t);
+        drive(0, 0, 0, 0,250);
     }
     public void rotate(double p, long t) {
         // + powers are right
         drive(p, -p, -p, p, t);
+        drive(0, 0, 0, 0,250);
     }
     public void open() {
         leftJacket.setPosition(0.75);
@@ -92,9 +95,9 @@ public class Robot {
      * @param z Left/Right (Strafe) Force (GamePad Left Stick x)
      */
     public void mecanumDrive(double y, double x, double z) {
-        final double v1 = ((y - x - z));
-        final double v2 = ((y - x + z));
-        final double v3 = ((y + x - z));
+        final double v1 = (y - x - z);
+        final double v2 = (y - x + z);
+        final double v3 = (y + x - z);
         final double v4 = (y + x + z);
 
         frontLeft.setPower(-v1);

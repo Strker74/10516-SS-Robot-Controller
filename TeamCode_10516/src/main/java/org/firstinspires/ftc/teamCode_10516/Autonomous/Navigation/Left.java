@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamCode_10516.Autonomous.Navigation;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
@@ -20,5 +19,4 @@ public class Left extends LinearOpMode {
         // Strafe Left Under SkyBridge
         robot.strafe(-0.5,500);
     }
-
 }
