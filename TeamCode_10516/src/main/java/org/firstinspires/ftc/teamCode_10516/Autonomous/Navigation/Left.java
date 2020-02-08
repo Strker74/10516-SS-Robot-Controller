@@ -18,7 +18,7 @@ public class Left extends LinearOpMode {
         // Waiting for Start Button
         waitForStart();
         // Strafe Left Under SkyBridge
-        robot.strafe(-1,500);
+        robot.strafe(-0.5,500);
     }
 
 }

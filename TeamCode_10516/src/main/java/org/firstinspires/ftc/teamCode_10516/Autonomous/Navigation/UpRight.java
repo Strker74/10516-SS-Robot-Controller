@@ -18,9 +18,9 @@ public class UpRight extends LinearOpMode {
         waitForStart();
         // Drive Forward To SkyBridge
 
-        robot.drive(1, 750);
+        robot.drive(0.5, 750);
         // Strafe Right Under SkyBridge
-        robot.strafe(1,500);
+        robot.strafe(0.5,500);
 
     }
 
