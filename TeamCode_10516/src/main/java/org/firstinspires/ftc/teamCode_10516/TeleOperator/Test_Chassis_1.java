@@ -29,5 +29,15 @@ public class Test_Chassis_1 extends OpMode {
 
         robot.mecanumDrive(gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
+        robot.setLift(gamepad2.right_stick_y);
+
+        if (gamepad2.a) {
+            robot.grab();
+        }
+
+        if (gamepad2.b) {
+            robot.drop();
+        }
+
     }
 }
