@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
 
-@TeleOp(name="Test Chassis 1", group = "Test")
-public class Test_Chassis_1 extends OpMode {
+@TeleOp(name="TeleOp Final", group = "TeleOp")
+public class TeleOpFinal extends OpMode {
     Robot robot = new Robot();
     @Override
     public void init() {

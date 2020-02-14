@@ -63,14 +63,18 @@ public class Robot {
 
         imu = hMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+
+        angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        gravity  = imu.getGravity();
+
     }
     // Autonomous Methods
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
         ElapsedTime timer = new ElapsedTime();
-        frontLeft.setPower(p1/2);
-        backLeft.setPower(p2/2);
+        frontLeft.setPower(p1);
+        backLeft.setPower(p2);
         frontRight.setPower(p3);
-        backRight.setPower(p4/2);
+        backRight.setPower(p4);
         while (timer.milliseconds() < time);
         frontLeft.setPower(0);
         backLeft.setPower(0);
@@ -89,8 +93,33 @@ public class Robot {
     }
     public void rotate(double p, long t) {
         // + powers are right
-        drive(p, -p, -p, p, t);
+        drive(p, p, -p, -p, t);
         drive(0, 0, 0, 0,250);
+    }
+    public void rotateGyro(double p, double yaw) {
+        if (yaw < 0) {
+            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < yaw) {
+                frontLeft.setPower(-p);
+                backLeft.setPower(-p);
+                frontRight.setPower(p);
+                backRight.setPower(p);
+            }
+            frontLeft.setPower(0);
+            backLeft.setPower(0);
+            frontRight.setPower(0);
+            backRight.setPower(0);
+        } else if (yaw > 0) {
+            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < yaw) {
+                frontLeft.setPower(p);
+                backLeft.setPower(p);
+                frontRight.setPower(-p);
+                backRight.setPower(-p);
+            }
+            frontLeft.setPower(0);
+            backLeft.setPower(0);
+            frontRight.setPower(0);
+            backRight.setPower(0);
+        }
     }
     public void open() {
         leftJacket.setPosition(0.75);
@@ -109,6 +138,18 @@ public class Robot {
         rightClaw.setPosition(0);
     }
     // Driver-Controlled Methods
+
+    /**
+     * Tank Drive TeleOp Code
+     * @param left Left Wheel Powers
+     * @param right Right Wheels Powers
+     */
+    public void tankDrive(double left, double right) {
+        frontLeft.setPower(left);
+        backLeft.setPower(left);
+        frontRight.setPower(right);
+        backRight.setPower(right);
+    }
     /**
      * Mecanum Drivetrain TeleOp Code
      * @param y Forward/Backward Force (GamePad Left Stick y)
@@ -127,7 +168,7 @@ public class Robot {
         frontRight.setPower(-v4);
     }
     /**
-     * Mecanum Drivetrain TeleOp Code
+     * Mecanum Drivetrain Trig TeleOp Code
      * @param y Forward/Backward Force (GamePad Left Stick y)
      * @param x Rotational Force (GamePad Right Stick x)
      * @param z Left/Right (Strafe) Force (GamePad Left Stick x)

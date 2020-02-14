@@ -138,7 +138,7 @@ public class SensorBNO055IMU extends LinearOpMode
                 });
 
         telemetry.addLine()
-            .addData("heading", new Func<String>() {
+            .addData("yaw", new Func<String>() {
                 @Override public String value() {
                     return formatAngle(angles.angleUnit, angles.firstAngle);
                     }
