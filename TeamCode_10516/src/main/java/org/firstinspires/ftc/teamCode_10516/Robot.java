@@ -96,9 +96,9 @@ public class Robot {
         drive(p, p, -p, -p, t);
         drive(0, 0, 0, 0,250);
     }
-    public void rotateGyro(double p, double yaw) {
-        if (yaw < 0) {
-            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < yaw) {
+    public void rotateGyro(double p, double heading) {
+        if (heading < 0) {
+            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < heading) {
                 frontLeft.setPower(-p);
                 backLeft.setPower(-p);
                 frontRight.setPower(p);
@@ -108,8 +108,8 @@ public class Robot {
             backLeft.setPower(0);
             frontRight.setPower(0);
             backRight.setPower(0);
-        } else if (yaw > 0) {
-            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < yaw) {
+        } else if (heading > 0) {
+            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < heading) {
                 frontLeft.setPower(p);
                 backLeft.setPower(p);
                 frontRight.setPower(-p);
@@ -150,7 +150,7 @@ public class Robot {
         frontRight.setPower(right);
         backRight.setPower(right);
     }
-    /**
+        /**
      * Mecanum Drivetrain TeleOp Code
      * @param y Forward/Backward Force (GamePad Left Stick y)
      * @param x Rotational Force (GamePad Right Stick x)
