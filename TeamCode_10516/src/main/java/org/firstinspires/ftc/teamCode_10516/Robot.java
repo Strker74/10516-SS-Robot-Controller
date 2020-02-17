@@ -21,9 +21,9 @@ public class Robot {
     // Public Members
     public DcMotor frontLeft, frontRight, backLeft, backRight;
     public Servo leftJacket, rightJacket;
-    public DcMotor lift;
-    public Servo pOR; // Point of Rotation
-    public Servo leftClaw, rightClaw;
+    // public DcMotor lift;
+    // public Servo pOR; // Point of Rotation
+    // public Servo leftClaw, rightClaw;
     BNO055IMU imu;
     Orientation angles;
     Acceleration gravity;
@@ -36,23 +36,23 @@ public class Robot {
         backRight = hMap.get(DcMotor.class,"Back Right");
         frontRight = hMap.get(DcMotor.class,"Front Right");
 
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
 
         leftJacket = hMap.get(Servo.class, "Left Jacket");
         rightJacket = hMap.get(Servo.class, "Right Jacket");
 
         rightJacket.setDirection(Servo.Direction.REVERSE);
 
-        lift = hMap.get(DcMotor.class, "Lift");
+        //lift = hMap.get(DcMotor.class, "Lift");
 
-        pOR = hMap.get(Servo.class,"Rotation");
+        //pOR = hMap.get(Servo.class,"Rotation");
 
 
-        leftClaw = hMap.get(Servo.class, "Left Claw");
-        rightClaw = hMap.get(Servo.class, "Right Claw");
+        //leftClaw = hMap.get(Servo.class, "Left Claw");
+        //rightClaw = hMap.get(Servo.class, "Right Claw");
 
-        rightClaw.setDirection(Servo.Direction.REVERSE);
+        //rightClaw.setDirection(Servo.Direction.REVERSE);
 
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -67,6 +67,7 @@ public class Robot {
         angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         gravity  = imu.getGravity();
 
+        angles.firstAngle *= -1;
     }
     // Autonomous Methods
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
@@ -129,7 +130,7 @@ public class Robot {
         leftJacket.setPosition(0.25);
         rightJacket.setPosition(0.5);
     }
-    public void grab() {
+    /*public void grab() {
         leftClaw.setPosition(0.625);
         rightClaw.setPosition(0.625);
     }
@@ -137,6 +138,7 @@ public class Robot {
         leftClaw.setPosition(0);
         rightClaw.setPosition(0);
     }
+     */
     // Driver-Controlled Methods
 
     /**
@@ -150,7 +152,7 @@ public class Robot {
         frontRight.setPower(right);
         backRight.setPower(right);
     }
-        /**
+    /**
      * Mecanum Drivetrain TeleOp Code
      * @param y Forward/Backward Force (GamePad Left Stick y)
      * @param x Rotational Force (GamePad Right Stick x)
@@ -162,10 +164,10 @@ public class Robot {
         final double v3 = (y + x - z);
         final double v4 = (y + x + z);
 
-        frontLeft.setPower(-v1);
-        backLeft.setPower(-v2);
-        backRight.setPower(-v3);
-        frontRight.setPower(-v4);
+        frontLeft.setPower(-3*v1/4);
+        backLeft.setPower(-3*v2/4);
+        backRight.setPower(-3*v3/4);
+        frontRight.setPower(-3*v4/4);
     }
     /**
      * Mecanum Drivetrain Trig TeleOp Code
@@ -188,7 +190,8 @@ public class Robot {
         backRight.setPower(v3);
         frontRight.setPower(v4);
     }
-    public void setLift(double power) {
+    /*public void setLift(double power) {
         lift.setPower(power);
     }
+     */
 }
