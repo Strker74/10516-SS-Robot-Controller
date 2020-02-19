@@ -21,9 +21,9 @@ public class Robot {
     // Public Members
     public DcMotor frontLeft, frontRight, backLeft, backRight;
     public Servo leftJacket, rightJacket;
-    // public DcMotor lift;
-    // public Servo pOR; // Point of Rotation
-    // public Servo leftClaw, rightClaw;
+    public DcMotor lift;
+    public Servo pOR; // Point of Rotation
+    public Servo leftClaw, rightClaw;
     BNO055IMU imu;
     Orientation angles;
     Acceleration gravity;
@@ -44,15 +44,15 @@ public class Robot {
 
         rightJacket.setDirection(Servo.Direction.REVERSE);
 
-        //lift = hMap.get(DcMotor.class, "Lift");
+        lift = hMap.get(DcMotor.class, "Lift");
 
-        //pOR = hMap.get(Servo.class,"Rotation");
+        pOR = hMap.get(Servo.class,"Rotation");
 
 
-        //leftClaw = hMap.get(Servo.class, "Left Claw");
-        //rightClaw = hMap.get(Servo.class, "Right Claw");
+        leftClaw = hMap.get(Servo.class, "Left Claw");
+        rightClaw = hMap.get(Servo.class, "Right Claw");
 
-        //rightClaw.setDirection(Servo.Direction.REVERSE);
+        rightClaw.setDirection(Servo.Direction.REVERSE);
 
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -130,7 +130,7 @@ public class Robot {
         leftJacket.setPosition(0.25);
         rightJacket.setPosition(0.5);
     }
-    /*public void grab() {
+    public void grab() {
         leftClaw.setPosition(0.625);
         rightClaw.setPosition(0.625);
     }
@@ -138,13 +138,11 @@ public class Robot {
         leftClaw.setPosition(0);
         rightClaw.setPosition(0);
     }
-     */
     // Driver-Controlled Methods
-
     /**
      * Tank Drive TeleOp Code
      * @param left Left Wheel Powers
-     * @param right Right Wheels Powers
+     * @param right Right Wheel Powers
      */
     public void tankDrive(double left, double right) {
         frontLeft.setPower(left);
@@ -190,8 +188,7 @@ public class Robot {
         backRight.setPower(v3);
         frontRight.setPower(v4);
     }
-    /*public void setLift(double power) {
+    public void setLift(double power) {
         lift.setPower(power);
     }
-     */
 }

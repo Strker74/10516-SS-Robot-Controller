@@ -167,9 +167,9 @@ public class Vuforia_Base extends LinearOpMode {
 
       // check all the trackable targets to see which one (if any) is visible.
       targetVisible = false;
-      for (VuforiaTrackable trackable : allTrackables) {
+      for (VuforiaTrackable trackable : targetsSkyStone) {
         if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
-          telemetry.addData("Visible Target", trackable.getName());
+          telemetry.addData("SkyStone Detected", trackable.getName());
           targetVisible = true;
 
           // getUpdatedRobotLocation() will return null if no new information is available since
