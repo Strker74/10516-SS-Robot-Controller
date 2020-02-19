@@ -99,7 +99,7 @@ public class Robot {
     }
     public void rotateGyro(double p, double heading) {
         if (heading < 0) {
-            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < heading) {
+            while (angles.firstAngle < heading) {
                 frontLeft.setPower(-p);
                 backLeft.setPower(-p);
                 frontRight.setPower(p);
@@ -110,7 +110,7 @@ public class Robot {
             frontRight.setPower(0);
             backRight.setPower(0);
         } else if (heading > 0) {
-            while (MathFunc.formatAngle(angles.angleUnit, angles.firstAngle) < heading) {
+            while (angles.firstAngle > heading) {
                 frontLeft.setPower(p);
                 backLeft.setPower(p);
                 frontRight.setPower(-p);
