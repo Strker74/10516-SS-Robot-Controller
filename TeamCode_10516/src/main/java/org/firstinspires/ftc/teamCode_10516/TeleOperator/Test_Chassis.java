@@ -9,15 +9,15 @@ public class Test_Chassis extends OpMode {
     DcMotor frontLeft,backLeft, backRight,frontRight;
 
     public void mecanumDrive(double y, double x, double z) {
-        final double v1 = (y - x + z);
-        final double v2 = (y - x - z);
-        final double v3 = (y + x + z);
-        final double v4 = (y + x - z);
+        final double v1 = (y - x - z);
+        final double v2 = (y - x + z);
+        final double v3 = (y + x - z);
+        final double v4 = (y + x + z);
 
-        frontLeft.setPower(-v1);
-        backLeft.setPower(-v2);
-        backRight.setPower(-v3);
-        frontRight.setPower(-v4);
+        frontLeft.setPower(-3*v1/4);
+        backLeft.setPower(-3*v2/4);
+        backRight.setPower(-3*v3/4);
+        frontRight.setPower(-3*v4/4);
     }
 
     @Override
