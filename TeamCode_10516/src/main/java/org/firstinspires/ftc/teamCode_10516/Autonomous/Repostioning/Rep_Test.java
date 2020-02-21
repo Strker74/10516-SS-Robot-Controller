@@ -17,17 +17,17 @@ public class Rep_Test extends LinearOpMode {
         // Waiting for Start Button
         waitForStart();
         // Open the "Jacket"
-        robot.open();
+        //robot.open();
         // Drive Forward to Foundation
-        robot.drive(1, 600);
+        //robot.drive(1, 600);
         // Close the "Jacket" grabbing the foundation
-        robot.close();
+        //robot.close();
         // Drive backwards pulling the foundation
         robot.drive(-0.4, 6000);
         // Open the "Jacket" releasing the foundation
-        robot.open();
+        //robot.open();
         // Strafe out the foundation opening to park
-        robot.strafe(-0.75, 1000);
+        //robot.strafe(-0.75, 1000);
     }
 
 }

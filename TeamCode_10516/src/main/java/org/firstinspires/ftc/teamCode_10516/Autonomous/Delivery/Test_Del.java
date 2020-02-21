@@ -17,13 +17,13 @@ public class Test_Del extends LinearOpMode {
         // Waiting for Start Button
         waitForStart();
         // Open Jacket
-        robot.open();
+        //robot.open();
         // Drive Forward Into Stone Quarry
         robot.drive(0.5, 2000);
         // Close Jacket
         robot.drive(0, 2000);
 
-        robot.close();
+        //robot.close();
 
         robot.drive(0, 2000);
         // Drive Backwards (w/ stone)

@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamCode_10516.Autonomous.Navigation;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
 
+@Disabled
 @Autonomous(name = "Navigate Up Right", group = "Navigation")
 public class UpRight extends LinearOpMode {
     // Creating the Robot

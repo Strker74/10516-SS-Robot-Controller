@@ -31,7 +31,7 @@ public class Robot {
     Acceleration gravity;
     BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 
-    DcMotor[] driveMotors = {frontLeft, frontRight, backLeft, backRight};
+    public DcMotor[] driveMotors;
 
     // Initialization
     public void init(HardwareMap hMap) {
@@ -72,6 +72,7 @@ public class Robot {
         gravity  = imu.getGravity();
 
         angles.firstAngle *= -1;
+
     }
     // Autonomous Methods
     public void setDriveMotors(double power) {
@@ -79,6 +80,14 @@ public class Robot {
             i.setPower(power);
         }
     }
+
+    public void setStrafeMotors(double power) {
+        frontLeft.setPower(power);
+        backLeft.setPower(-power);
+        frontRight.setPower(-power);
+        backRight.setPower(power);
+    }
+
 
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
         ElapsedTime timer = new ElapsedTime();
@@ -111,6 +120,7 @@ public class Robot {
     }
 
     public void encoderDrive(double power, int distance) {
+
         for (DcMotor i : driveMotors) {
             i.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
@@ -126,6 +136,28 @@ public class Robot {
 
         setDriveMotors(0);
     }
+
+    public void encoderStrafe(double power, int distance) {
+
+        for (DcMotor i : driveMotors) {
+            i.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
+
+        frontLeft.setTargetPosition(distance);
+        backLeft.setTargetPosition(-distance);
+        frontRight.setTargetPosition(-distance);
+        backRight.setTargetPosition(distance);
+
+        for (DcMotor i : driveMotors) {
+            i.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        setStrafeMotors(power);
+
+        while (frontRight.isBusy() && frontLeft.isBusy() && backRight.isBusy() && backLeft.isBusy());
+
+        setDriveMotors(0);
+    }
+
 
     public void rotateGyro(double p, double heading) {
         if (heading < 0) {
@@ -154,13 +186,13 @@ public class Robot {
     }
 
     public void open() {
-        leftJacket.setPosition(0.75);
-        rightJacket.setPosition(1);
+        leftJacket.setPosition(0.5);
+        rightJacket.setPosition(0.5);
     }
 
     public void close() {
-        leftJacket.setPosition(0.25);
-        rightJacket.setPosition(0.5);
+        leftJacket.setPosition(0);
+        rightJacket.setPosition(0);
     }
 
     public void grab() {
