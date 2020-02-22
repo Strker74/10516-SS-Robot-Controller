@@ -72,7 +72,8 @@ public class Robot {
         gravity  = imu.getGravity();
 
         angles.firstAngle *= -1;
-
+        angles.secondAngle *= -1;
+        angles.thirdAngle *= -1;
     }
     // Autonomous Methods
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
