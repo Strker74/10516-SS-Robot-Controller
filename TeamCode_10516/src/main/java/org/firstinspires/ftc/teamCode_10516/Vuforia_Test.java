@@ -64,7 +64,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
  * From the Audience perspective, the Red Alliance station is on the right and the
  * Blue Alliance Station is on the left.
  * Eight perimeter targets are distributed evenly around the four perimeter walls
- * Four Bridge targets are located on the bridge uprights.
+ * Four Bridge_Right targets are located on the bridge uprights.
  * Refer to the Field Setup manual for more specific location details
  *
  * A final calculation then uses the location of the camera on the robot to determine the
@@ -161,13 +161,13 @@ public class Vuforia_Test extends LinearOpMode {
         VuforiaTrackable stoneTarget = targetsSkyStone.get(0);
         stoneTarget.setName("Stone Target");
         VuforiaTrackable blueRearBridge = targetsSkyStone.get(1);
-        blueRearBridge.setName("Blue Rear Bridge");
+        blueRearBridge.setName("Blue Rear Bridge_Right");
         VuforiaTrackable redRearBridge = targetsSkyStone.get(2);
-        redRearBridge.setName("Red Rear Bridge");
+        redRearBridge.setName("Red Rear Bridge_Right");
         VuforiaTrackable redFrontBridge = targetsSkyStone.get(3);
-        redFrontBridge.setName("Red Front Bridge");
+        redFrontBridge.setName("Red Front Bridge_Right");
         VuforiaTrackable blueFrontBridge = targetsSkyStone.get(4);
-        blueFrontBridge.setName("Blue Front Bridge");
+        blueFrontBridge.setName("Blue Front Bridge_Right");
         VuforiaTrackable red1 = targetsSkyStone.get(5);
         red1.setName("Red Perimeter 1");
         VuforiaTrackable red2 = targetsSkyStone.get(6);

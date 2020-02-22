@@ -75,20 +75,6 @@ public class Robot {
 
     }
     // Autonomous Methods
-    public void setDriveMotors(double power) {
-        for (DcMotor i : driveMotors) {
-            i.setPower(power);
-        }
-    }
-
-    public void setStrafeMotors(double power) {
-        frontLeft.setPower(power);
-        backLeft.setPower(-power);
-        frontRight.setPower(-power);
-        backRight.setPower(power);
-    }
-
-
     public void drive(double p1, double p2, double p3, double p4, long time) { // + powers are forward
         ElapsedTime timer = new ElapsedTime();
         frontLeft.setPower(p1);
@@ -117,6 +103,26 @@ public class Robot {
         // + powers are right
         drive(p, p, -p, -p, t);
         drive(0, 0, 0, 0,250);
+    }
+
+    public void setDriveMotors(double power) {
+        for (DcMotor i : driveMotors) {
+            i.setPower(power);
+        }
+    }
+
+    public void setStrafeMotors(double power) {
+        frontLeft.setPower(power);
+        backLeft.setPower(-power);
+        frontRight.setPower(-power);
+        backRight.setPower(power);
+    }
+
+    public void setRotateMotors(double power) {
+        frontLeft.setPower(power);
+        backLeft.setPower(power);
+        frontRight.setPower(-power);
+        backRight.setPower(-power);
     }
 
     public void encoderDrive(double power, int distance) {
@@ -159,40 +165,28 @@ public class Robot {
     }
 
 
-    public void rotateGyro(double p, double heading) {
+    public void rotateGyro(double power, double heading) {
         if (heading < 0) {
             while (angles.firstAngle < heading) {
-                frontLeft.setPower(-p);
-                backLeft.setPower(-p);
-                frontRight.setPower(p);
-                backRight.setPower(p);
+                setRotateMotors(-power);
             }
-            frontLeft.setPower(0);
-            backLeft.setPower(0);
-            frontRight.setPower(0);
-            backRight.setPower(0);
+            setDriveMotors(0);
         } else if (heading > 0) {
             while (angles.firstAngle > heading) {
-                frontLeft.setPower(p);
-                backLeft.setPower(p);
-                frontRight.setPower(-p);
-                backRight.setPower(-p);
+                setRotateMotors(power);
             }
-            frontLeft.setPower(0);
-            backLeft.setPower(0);
-            frontRight.setPower(0);
-            backRight.setPower(0);
+            setDriveMotors(0);
         }
     }
 
     public void open() {
-        leftJacket.setPosition(0.5);
-        rightJacket.setPosition(0.5);
+        leftJacket.setPosition(0.25);
+        rightJacket.setPosition(0.25);
     }
 
     public void close() {
-        leftJacket.setPosition(0);
-        rightJacket.setPosition(0);
+        leftJacket.setPosition(1);
+        rightJacket.setPosition(1);
     }
 
     public void grab() {
@@ -236,12 +230,6 @@ public class Robot {
         frontRight.setPower(-3*v4/4);
     }
 
-    /**
-     * Mecanum Drivetrain Trig TeleOp Code
-     * @param y Forward/Backward Force (GamePad Left Stick y)
-     * @param x Rotational Force (GamePad Right Stick x)
-     * @param z Left/Right (Strafe) Force (GamePad Left Stick x)
-     */
     public void trigMecDrive(double y, double x, double z) {
         double r = Math.hypot(z, y);
         double robotangle = Math.atan2(y, z) - Math.PI/4;

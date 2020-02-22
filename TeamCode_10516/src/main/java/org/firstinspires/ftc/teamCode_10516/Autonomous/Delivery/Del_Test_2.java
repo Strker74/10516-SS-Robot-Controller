@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamCode_10516.Autonomous.Navigation;
+package org.firstinspires.ftc.teamCode_10516.Autonomous.Delivery;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,21 +6,22 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamCode_10516.Robot;
 
-@Autonomous(name = "Wall Navigation", group = "Navigation")
-public class Wall extends LinearOpMode {
-    // Creating the Robot Object
-    private Robot robot = new Robot();
-
+@Autonomous
+public class Del_Test_2 extends LinearOpMode {
+    Robot robot = new Robot();
     @Override
     public void runOpMode() {
-        // Setting Up Robot Hardware
         robot.init(hardwareMap);
-        // Waiting for Start Button
         waitForStart();
-        // Strafe Left Under SkyBridge
-        robot.close();
         robot.driveMotors = new DcMotor[]{robot.frontLeft, robot.frontRight, robot.backLeft, robot.backRight};
-        robot.drive(0, 500);
         robot.encoderDrive(0.5,1000);
+        robot.drive(0, 500);
+        robot.close();
+        robot.drive(0, 500);
+        robot.encoderDrive(-0.5, -1000);
+        robot.drive(0, 500);
+        robot.rotate(-1, 5000);
+        //robot.rotateGyro(-0.5, -90);
+        //robot.drive(0, 500);
     }
 }
