@@ -6,12 +6,10 @@ As mentioned in our engineering notebook, our programming team uses GitHub to ef
 
 ## Robot.java
 
-Robot.java was our primary class where we stored the hardare for our robot. Along with this, we also had our methods, for both autonomous and teleOperator. In every other OpMode, we imported this class and created a new instance of the motor. 
-
+Robot.java was our primary class where we stored the hardare for our robot. Along with this, we also had our methods, for both autonomous and teleOperator. In every other OpMode, we imported this class and created a new instance of the robot. This is shown in the line below (per OpMode, not Robot.java):
 ```
-Code Font
+Robot robot = new Robot();
 ```
-
 ## Autonomous Programs
 
 About Autonomous Programs
