@@ -14,7 +14,6 @@ public class TeleOpFinal extends OpMode {
     }
     @Override
     public void init_loop() {
-
     }
     @Override
     public void loop() {
